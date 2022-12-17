@@ -11,6 +11,7 @@ public class Controller {
     public Controller() {
         variants.put(1, Period.NOW);
         variants.put(5, Period.FIVE_DAYS);
+        variants.put(2, Period.DB);
     }
     public void getWeather(String userInput, String selectedCity) throws IOException {
         Integer userIntegerInput = Integer.parseInt(userInput);
@@ -23,6 +24,9 @@ public class Controller {
             case FIVE_DAYS:
                 weatherModel.getWeather(selectedCity, Period.FIVE_DAYS);
                 break;
+
+            case DB:
+                weatherModel.getSavedToDBWeather();
         }
     }
 }

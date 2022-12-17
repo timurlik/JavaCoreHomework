@@ -15,6 +15,7 @@ public class UserInterfaceView {
             String city = scanner.nextLine();
 
             System.out.println("Введите 1 для получения прогноза на один день: \n" +
+                    "Введите 2 для получения прогноза из базы данных \n" +
                     "Введите 5 для получения проноза на пяь дней: \n" +
                     "Введите 0 для завершения: ");
             String command = scanner.nextLine();

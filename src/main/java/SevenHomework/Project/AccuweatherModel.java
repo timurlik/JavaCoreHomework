@@ -1,5 +1,6 @@
 package SevenHomework.Project;
 
+import SevenHomework.Project.entity.Weather;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,6 +11,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AccuweatherModel implements WeatherModel{
@@ -28,6 +30,8 @@ public class AccuweatherModel implements WeatherModel{
     private static final String API_KEY_QUERY_PARAM = "apikey";
     private static final OkHttpClient okHttpClient = new OkHttpClient();
     private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    private DatabaseRepository databaseRepository = new DatabaseRepository();
 
     public void getWeather(String selectedCity, Period period) throws IOException, NullPointerException {
         switch (period) {
@@ -90,6 +94,12 @@ public class AccuweatherModel implements WeatherModel{
                 break;
         }
     }
+
+    @Override
+    public List<Weather> getSavedToDBWeather() {
+        return databaseRepository.getSavedToDBWeather();
+    }
+
     private String detectCityKey(String selectedCity) throws IOException {
         //http://dataservice.accuweather.com/locations/v1/cities/search
         HttpUrl httpUrl1 = new HttpUrl.Builder()
